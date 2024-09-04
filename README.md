@@ -1,1 +1,1 @@
-starting project is the point without and php code (only the split of admin pages components)
+starting project is the point without any php code (only the split of admin pages components)
