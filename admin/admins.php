@@ -1,5 +1,15 @@
 <?php require('inc/header.php');?>
+<?php 
+require('handel/connection.php');
+$query="SELECT * FROM admins";
+$result=mysqli_query($conn,$query);
+if (mysqli_num_rows($result)>0){
+    $admins=mysqli_fetch_all($result,MYSQLI_ASSOC);
+}else{
+    $msg="no data found";
+}
 
+?>
 <div class="container-fluid py-5">
     <div class="row">
 
@@ -7,6 +17,8 @@
 
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h3>All Admins</h3>
+
+                <a href="add-admin.php" class="btn btn-success">add admin</a>
             </div>
 
             <table class="table table-hover">
@@ -19,10 +31,24 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    <?php 
+                    if (!empty($admins)):
+                    foreach($admins as $index=>$admin): ?>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Kareem Fouad</td>
-                        <td>kareem@techstore.com</td>
+                        <th scope="row"><?=$index+1?></th>
+                        <td>
+                            <?=$admin['name']?>
+                        </td>
+                        <td>
+                            <?=$admin['email']?>
+                        </td>
+
+                        <td>
+                            <?php 
+                            echo $admin['status']?'<span class="badge badge-success"><i class="fas fa-check-circle"></i></span>':'<span class="badge badge-danger"><i class="fas fa-times-circle"></i></span>'
+                            ?>
+                        </td>
                         <td>
                             <a class="btn btn-sm btn-info" href="#">
                                 <i class="fas fa-edit"></i>
@@ -32,6 +58,15 @@
                             </a>
                         </td>
                     </tr>
+
+                    <?php 
+                    endforeach;
+                else:
+                        echo $msg;
+                    
+                endif;
+                mysqli_close($conn);
+                    ?>
                 </tbody>
             </table>
         </div>
