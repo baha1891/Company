@@ -5,17 +5,22 @@ session_start(); ?>
 
         <div class="col-md-6 offset-md-3">
             <h3 class="mb-3">Add Admin</h3>
-            <?php 
-                    if(isset($_SESSION["errors"])): 
-                        foreach($_SESSION['errors'] as $error):
-                            echo $error;
-                           
-                        endforeach;
-                        
-                    
-                    endif;
-                    unset($_SESSION['errors']);
-                     ?>
+            <?php
+            if (isset($_SESSION["errors"])):
+                foreach ($_SESSION['errors'] as $error): ?>
+
+            <ul>
+                <li class="alert alert-danger">
+
+                    <?= $error ?>
+                </li>
+
+            </ul>
+
+            <?php endforeach;
+            endif;
+            unset($_SESSION['errors']);
+            ?>
             <div class="card">
                 <div class="card-body p-5">
 
@@ -24,14 +29,22 @@ session_start(); ?>
 
                         <div class=" form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control" name="name">
+                            <input type="text" class="form-control" name="name" value="<?php
+
+                                                                                if (isset($_SESSION['name'])) {
+                                                                                    echo $_SESSION['name'];
+                                                                                } ?>">
                         </div>
 
-                        <div class="form-group">
+                        <div class=" form-group">
                             <label>Email</label>
-                            <input type="email" class="form-control" name="email">
+                            <input type="email" class="form-control" name="email" value="<?php
+                                                                                    if (isset($_SESSION['email'])) {
+                                                                                        echo $_SESSION['email'];
+                                                                                    }
+                                                                                    ?>">
                         </div>
-                        <div class="form-group">
+                        <div class=" form-group">
                             <label>Password</label>
                             <input type="password" class="form-control" name="password">
                         </div>
