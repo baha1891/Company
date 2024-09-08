@@ -27,6 +27,7 @@ if (mysqli_num_rows($result)>0){
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Img</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -42,6 +43,9 @@ if (mysqli_num_rows($result)>0){
                         </td>
                         <td>
                             <?=$admin['email']?>
+                        </td>
+                        <td>
+                            <img src="upload/<?=$admin['img']?>" alt="" width="50" height="50">
                         </td>
 
                         <td>
