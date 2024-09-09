@@ -31,18 +31,20 @@ session_start(); ?>
                             <label>Name</label>
                             <input type="text" class="form-control" name="name" value="<?php
 
-                                                                                if (isset($_SESSION['name'])) {
-                                                                                    echo $_SESSION['name'];
-                                                                                } ?>">
+                                                                                        if (isset($_SESSION['name'])):
+                                                                                            echo $_SESSION['name'];
+                                                                                        endif;
+                                                                                        unset($_SESSION['name']); ?>">
                         </div>
 
                         <div class=" form-group">
                             <label>Email</label>
                             <input type="email" class="form-control" name="email" value="<?php
-                                                                                    if (isset($_SESSION['email'])) {
-                                                                                        echo $_SESSION['email'];
-                                                                                    }
-                                                                                    ?>">
+                                                                                            if (isset($_SESSION['email'])) {
+                                                                                                echo $_SESSION['email'];
+                                                                                            }
+                                                                                            unset($_SESSION['email']);
+                                                                                            ?>">
                         </div>
                         <div class=" form-group">
                             <label>Password</label>

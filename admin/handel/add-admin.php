@@ -43,6 +43,8 @@ if (isset($_POST['submit'])) {
     // إذا كانت هناك أخطاء في بيانات النموذج، قم بإعادة توجيه المستخدم إلى صفحة النموذج
     if (!empty($errors)) {
         $_SESSION['errors'] = $errors;
+        $_SESSION['name'] = $name;
+        $_SESSION['email'] = $email;
         header('location:../add-admin.php');
         exit();
     }
@@ -71,7 +73,7 @@ if (isset($_POST['submit'])) {
             // محاولة نقل الملف
             if (!move_uploaded_file($tmp_name, $target_path)) {
                 $errors[] = 'Failed to move the uploaded file.';
-            } 
+            }
         } else {
             $errors[] = 'Invalid file type. Only JPG, JPEG, PNG, and GIF files are allowed.';
         }
@@ -104,21 +106,21 @@ if (isset($_POST['submit'])) {
 
     // إذا كانت هناك أخطاء، قم بإعادة توجيه المستخدم إلى صفحة النموذج
     if (!empty($errors)) {
+        
         $_SESSION['errors'] = $errors;
         $_SESSION['name'] = $name;
         $_SESSION['email'] = $email;
-        
+
         header('location:../add-admin.php');
         exit();
     }
 
     // إذا كانت جميع العمليات ناجحة، قم بإعادة توجيه المستخدم إلى صفحة الإدارة
     $query = "INSERT INTO admins(`name`, `email`, `status`, `password`, `img`, `created_at`) VALUES ('$name','$email',$status,'$password','$newName', NOW())";
-    $result=mysqli_query($conn,$query);
-    $_SESSION['success']='admin added successfully';
+    $result = mysqli_query($conn, $query);
+    $_SESSION['success'] = 'admin added successfully';
     header("location:../admins.php");
 } else {
     header("location:../add-admin.php");
     exit();
 }
-?>
