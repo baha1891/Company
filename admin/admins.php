@@ -40,6 +40,18 @@ if (mysqli_num_rows($result) > 0) {
                 <?php
                 endif;
                 unset($_SESSION['success']);  ?>
+                <?php
+                if (isset($_SESSION['error']) && !empty($_SESSION['error'])) :?>
+                <div class="alert alert-success">
+
+                    <?= $_SESSION['error'];?>
+                </div>
+
+                <?php
+                endif;
+                unset($_SESSION['error']);  ?>
+
+
                 <thead>
                     <tr>
                         <th scope=" col">#</th>
@@ -75,7 +87,7 @@ if (mysqli_num_rows($result) > 0) {
                             <a class="btn btn-sm btn-info" href="#">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="btn btn-sm btn-danger" href="#">
+                            <a class="btn btn-sm btn-danger" href="handel/delete-admin.php?id=<?=$admin['id']?>">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
