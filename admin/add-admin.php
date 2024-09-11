@@ -25,7 +25,7 @@ session_start(); ?>
                 <div class="card-body p-5">
 
 
-                    <form method="post" action="handel/add-admin.php" enctype="multipart/form-data">
+                    <form method="post" action="handel/admin/add-admin.php" enctype="multipart/form-data">
 
                         <div class=" form-group">
                             <label>Name</label>

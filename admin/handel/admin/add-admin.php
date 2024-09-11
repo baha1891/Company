@@ -129,7 +129,7 @@
 
 <?php
 session_start();
-require("connection.php");
+require("../connection.php");
 
 if (isset($_POST['submit'])) {
     $name = htmlspecialchars(trim($_POST['name']));
@@ -140,7 +140,7 @@ if (isset($_POST['submit'])) {
 
     // Define the default image name
     $defaultImage = 'default.jpeg';
-
+    
     if (empty($name)) {
         $errors[] = "Name is required";
     } elseif (is_numeric($name)) {
@@ -188,11 +188,11 @@ if (isset($_POST['submit'])) {
         // Check extension
         if (in_array($ext, $allowed_extensions)) {
             // Create the upload directory if it doesn't exist
-            if (!file_exists('../upload')) {
-                mkdir('../upload', 0777, true);
+            if (!file_exists('../../upload')) {
+                mkdir('../../upload', 0777, true);
             }
 
-            $target_path = '../upload/' . $newName;
+            $target_path = '../../upload/' . $newName;
 
             // Try to move the uploaded file
             if (!move_uploaded_file($tmp_name, $target_path)) {
@@ -237,7 +237,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['errors'] = $errors;
         $_SESSION['name'] = $name;
         $_SESSION['email'] = $email;
-        header('location:../add-admin.php');
+        header('location:../../add-admin.php');
         exit();
     }
 
@@ -246,9 +246,9 @@ if (isset($_POST['submit'])) {
               VALUES ('$name','$email',$status,'$password','$newName', NOW())";
     $result = mysqli_query($conn, $query);
     $_SESSION['success'] = 'Admin added successfully';
-    header("location:../admins.php");
+    header("location:../../admins.php");
 } else {
-    header("location:../add-admin.php");
+    header("location:../../add-admin.php");
     exit();
 }
 ?>

@@ -84,10 +84,10 @@ if (mysqli_num_rows($result) > 0) {
                                     ?>
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-info" href="#">
+                            <a class="btn btn-sm btn-info" href="edit-admin.php?id=<?=$admin['id']?>">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="btn btn-sm btn-danger" href="handel/delete-admin.php?id=<?=$admin['id']?>">
+                            <a class="btn btn-sm btn-danger" href="handel/admin/delete-admin.php?id=<?=$admin['id']?>">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
