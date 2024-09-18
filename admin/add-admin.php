@@ -5,22 +5,24 @@ session_start(); ?>
 
         <div class="col-md-6 offset-md-3">
             <h3 class="mb-3">Add Admin</h3>
-            <?php
+            <ul>
+                <?php
             if (isset($_SESSION["errors"])):
                 foreach ($_SESSION['errors'] as $error): ?>
 
-            <ul>
+
                 <li class="alert alert-danger">
 
                     <?= $error ?>
                 </li>
 
-            </ul>
 
-            <?php endforeach;
+
+                <?php endforeach;
             endif;
             unset($_SESSION['errors']);
             ?>
+            </ul>
             <div class="card">
                 <div class="card-body p-5">
 

@@ -1,5 +1,9 @@
 <?php require('inc/header.php');
 session_start();
+if (!$_SESSION['AdminId']) {
+    header('location:login.php');
+                exit();
+}
  ?>
 
 
@@ -45,6 +49,7 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="alert alert-success">
 
                     <?= $_SESSION['error'];?>
+
                 </div>
 
                 <?php

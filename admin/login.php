@@ -1,42 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Techstore | Dashboard</title>
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css">
-</head>
-
-<body>
+<?php require('inc/header.php');
+session_start();
+ ?>
 
 
-    <div class="container py-5">
-        <div class="row">
+<div class="container py-5">
+    <div class="row">
+        <h2 class="m-auto">Append Company</h2>
+        <div class="col-md-6 offset-md-3">
+            <ul>
+                <?php
+            if (isset($_SESSION["errors"])):
+                foreach ($_SESSION['errors'] as $error): ?>
 
-            <div class="col-md-6 offset-md-3">
-                <h3 class="mb-3">Login</h3>
-                <div class="card">
-                    <div class="card-body p-5">
-                        <form>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" class="form-control">
-                            </div>
-                            <div class="text-center mt-5">
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </div>
-                        </form>
-                    </div>
+
+                <li class="alert alert-danger">
+
+                    <?= $error ?>
+                </li>
+
+
+
+                <?php endforeach;
+            endif;
+            unset($_SESSION['errors']);
+            ?>
+            </ul>
+
+            <?php
+                if (isset($_SESSION['error']) && !empty($_SESSION['error'])) : 
+            ?>
+            <div class="alert alert-danger">
+                <ul>
+                    <?php 
+                        // إذا كانت الأخطاء عبارة عن مصفوفة، نعرض كل رسالة على حدة
+                        if (is_array($_SESSION['error'])) {
+                            foreach ($_SESSION['error'] as $error) {
+                                echo "<li>{$error}</li>";
+                            }
+                        } else {
+                            echo $_SESSION['error'];
+                        }
+                        ?>
+                </ul>
+            </div>
+            <?php 
+                endif; 
+                unset($_SESSION['error']);  // إزالة الأخطاء بعد عرضها
+            ?>
+
+            <div class="card">
+                <div class="card-body p-5">
+                    <form method="post" action="handel/admin/login-admin.php">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input name="email" type="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input name="password" type="password" class="form-control">
+                        </div>
+                        <div class="text-center mt-5">
+                            <button type="submit" name="login" class=" btn btn-primary">Login</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-
         </div>
+
     </div>
-    <?php require('inc/footer.php');?>
+</div>
+<?php require('inc/footer.php')?>
