@@ -1,24 +1,49 @@
-<?php require('inc/header.php');
+<?php 
 session_start();
+require('inc/header.php');
 if (!$_SESSION['AdminId']) {
     header('location:login.php');
-                exit();
+    exit();
 }
- ?>
-
-
-<?php
 
 require('handel/connection.php');
-$query = "SELECT * FROM admins";
-$result = mysqli_query($conn, $query);
-if (mysqli_num_rows($result) > 0) {
-    $admins = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+if(isset($_GET['page'])){
+    $page = $_GET['page'];
+
+    // التحقق من أن القيمة موجبة
+    if (!is_numeric($page) || $page < 1) {
+        
+        header("location:admins.php?page=1");
+    exit();
+    }
+} else { 
+    header("location:admins.php?page=1");
+    exit(); // إذا لم يتم إرسال المتغير، ابدأ من الصفحة 1
+}
+
+$sql = "SELECT count('id') as total FROM admins";
+$query = mysqli_query($conn, $sql);
+$totalcount = mysqli_fetch_assoc($query);
+$totalcount = $totalcount['total'];  // تصحيح طريقة الوصول إلى العدد
+$limit = 3;
+$offset = ($page - 1) * $limit;
+$pagesnum = ceil($totalcount / $limit);  // استخدام ceil لضمان عدد صفحات صحيح
+
+if ($page > $pagesnum) {
+    header("location:admins.php?page=$pagesnum");
+    exit();  // إذا كانت أكبر من عدد الصفحات، اضبطها على آخر صفحة
+}
+
+$sql = "SELECT * FROM admins limit $limit offset $offset";
+$query = mysqli_query($conn, $sql);  // تصحيح المتغير هنا
+if (mysqli_num_rows($query) > 0) {
+    $admins = mysqli_fetch_all($query, MYSQLI_ASSOC);
 } else {
     $msg = "no data found";
 }
-
 ?>
+
 <div class="container-fluid py-5">
     <div class="row">
 
@@ -110,6 +135,27 @@ if (mysqli_num_rows($result) > 0) {
             </table>
         </div>
 
+
     </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
+                <a class="page-link" href="admins.php?page=<?= $page-1 ?>">Previous</a>
+            </li>
+
+            <!-- Display page numbers -->
+            <?php
+        for ($i = 1; $i <= $pagesnum; $i++) { ?>
+            <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                <a class="page-link" href="admins.php?page=<?= $i ?>"><?= $i ?></a>
+            </li>
+            <?php } ?>
+
+            <!-- Disable Next link if on the last page -->
+            <li class="page-item <?= $page == $pagesnum ? 'disabled' : '' ?>">
+                <a class="page-link" href="admins.php?page=<?= $page+1 ?>">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
 <?php require('inc/footer.php'); ?>
