@@ -2,9 +2,7 @@
 
 require('inc/header.php');
 
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
+
 
 if (!$_SESSION['AdminId']) {
     header('location:login.php');
