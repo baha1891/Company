@@ -1,6 +1,6 @@
 <?php require('inc/header.php');?>
 <?php
-require('handel/connection.php');
+
 $query="SELECT count(id) as admincounts from admins";
 $result=mysqli_query($conn,$query);
 $adminsCount=mysqli_fetch_assoc($result);

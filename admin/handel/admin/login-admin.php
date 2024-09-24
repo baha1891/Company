@@ -41,7 +41,8 @@ if (isset($_POST['login'])){
             $adminpass=password_verify($password,$admin['password']);
             if ($adminpass) {
                 $_SESSION['AdminId']=$admin['id'];
-                header('location:../../admins.php');
+                $_SESSION['name'] = $admin['name'];
+                header('location:../../admins.php?page=1');
                 exit();
             } else {
                 $errors[] = 'Invalid password';

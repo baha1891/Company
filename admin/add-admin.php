@@ -1,5 +1,8 @@
-<?php require('inc/header.php');
-session_start(); ?>
+<?php 
+
+require('inc/header.php');
+
+ ?>
 <div class="container py-5">
     <div class="row">
 

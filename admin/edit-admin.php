@@ -1,6 +1,8 @@
-<?php require('inc/header.php');
-require("handel/connection.php");
-session_start();
+<?php
+
+ require('inc/header.php');
+
+
 
 
 if(isset($_GET['id'])) {

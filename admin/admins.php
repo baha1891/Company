@@ -1,12 +1,16 @@
 <?php 
-session_start();
+
 require('inc/header.php');
+
+echo '<pre>';
+print_r($_SESSION);
+echo '</pre>';
+
 if (!$_SESSION['AdminId']) {
     header('location:login.php');
     exit();
 }
 
-require('handel/connection.php');
 
 if(isset($_GET['page'])){
     $page = $_GET['page'];
@@ -42,6 +46,9 @@ if (mysqli_num_rows($query) > 0) {
 } else {
     $msg = "no data found";
 }
+
+
+
 ?>
 
 <div class="container-fluid py-5">
@@ -97,7 +104,7 @@ if (mysqli_num_rows($query) > 0) {
                     if (!empty($admins)):
                         foreach ($admins as $index => $admin): ?>
                     <tr>
-                        <th scope="row"><?= $index + 1 ?></th>
+                        <th scope="row"><?= $offset + $index + 1 ?></th>
                         <td>
                             <?= $admin['name'] ?>
                         </td>
