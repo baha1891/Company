@@ -1,4 +1,6 @@
-<?php require('inc/header.php');?>
+<?php
+require('inc/header.php');
+?>
 <?php
 
 $query="SELECT count(id) as admincounts from admins";

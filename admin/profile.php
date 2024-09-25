@@ -1,6 +1,8 @@
 <?php
 
- include('vc/header.php')?>
+require('inc/header.php');
+
+?>
 <div class="container py-5">
     <div class="row">
 

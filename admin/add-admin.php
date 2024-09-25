@@ -7,7 +7,7 @@ require('inc/header.php');
     <div class="row">
 
         <div class="col-md-6 offset-md-3">
-            <h3 class="mb-3">Add Admin</h3>
+            <h3 class="mb-3"><?=$message['Add Admin']?></h3>
             <ul>
                 <?php
             if (isset($_SESSION["errors"])):
@@ -36,10 +36,10 @@ require('inc/header.php');
                             <label>Name</label>
                             <input type="text" class="form-control" name="name" value="<?php
 
-                                                                                        if (isset($_SESSION['name'])):
-                                                                                            echo $_SESSION['name'];
+                                                                                        if (isset($_SESSION['aname'])):
+                                                                                            echo $_SESSION['aname'];
                                                                                         endif;
-                                                                                        unset($_SESSION['name']); ?>">
+                                                                                        unset($_SESSION['aname']); ?>">
                         </div>
 
                         <div class=" form-group">
@@ -62,6 +62,15 @@ require('inc/header.php');
                             <select class="form-control" name="status">
                                 <option value="1">active</option>
                                 <option value="0">not active</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Role</label>
+                            <select class="form-control" name="role">
+                                <option value="0">admin</option>
+                                <option value="1">super admin</option>
 
                             </select>
                         </div>

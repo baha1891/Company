@@ -1,6 +1,6 @@
 <?php
 
- require('inc/header.php');
+require('inc/header.php');
 
 
 
@@ -55,6 +55,14 @@ if(isset($_GET['id'])) {
                             <select class="form-control" name="status">
                                 <option value="1" <?= $admin['status'] == 1 ? 'selected' : '' ?>>active</option>
                                 <option value="0" <?= $admin['status'] == 0 ? 'selected' : '' ?>>not active</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Role</label>
+                            <select class="form-control" name="role">
+                                <option value="0" <?= $admin['role'] == 0 ? 'selected' : '' ?>>admin</option>
+                                <option value="1" <?= $admin['role'] == 1 ? 'selected' : '' ?>>super admin</option>
 
                             </select>
                         </div>

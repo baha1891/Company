@@ -11,6 +11,7 @@ if (isset($_POST['submit'])) {
     $name = htmlspecialchars(trim($_POST['name']));
     $email = htmlspecialchars(trim($_POST['email']));
     $status = htmlspecialchars(trim($_POST['status']));
+    $role=htmlspecialchars(trim($_POST['role']));
     $errors = [];
     
     $query="SELECT * FROM admins WHERE id=$id";
@@ -40,6 +41,10 @@ if (isset($_POST['submit'])) {
     if (!in_array($status, [0, 1])) {
         $errors[] = 'Status must be active or not active';
     }
+    if (!in_array($role, [0, 1])) {
+        $errors[] = 'Status must be admin or super admin';
+    }
+
 
     // إذا كانت هناك أخطاء في بيانات النموذج، قم بإعادة توجيه المستخدم إلى صفحة النموذج
     if (!empty($errors)) {
@@ -88,7 +93,7 @@ if (isset($_POST['submit'])) {
 
     // تحديث البيانات في قاعدة البيانات
     if (empty($errors)) {
-        $query = "UPDATE admins SET name='$name', email='$email', status='$status', img='$img' WHERE id=$id";
+        $query = "UPDATE admins SET name='$name', email='$email', status='$status', img='$img',role='$role' WHERE id=$id";
         if (mysqli_query($conn, $query)) {
             $_SESSION['success'] = 'Admin updated successfully';
             header("location:../../admins.php");

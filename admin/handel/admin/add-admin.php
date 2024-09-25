@@ -8,6 +8,7 @@ if (isset($_POST['submit'])) {
     $password = htmlspecialchars(trim($_POST['password']));
     $status = htmlspecialchars(trim($_POST['status']));
     $errors = [];
+    $role=htmlspecialchars(trim($_POST['role']));
 
     // Define the default image name
     $defaultImage = 'default.jpeg';
@@ -43,6 +44,10 @@ if (isset($_POST['submit'])) {
 
     if (!in_array($status, [0, 1])) {
         $errors[] = 'Status must be active or not active';
+    }
+
+    if (!in_array($role, [0, 1])) {
+        $errors[] = 'role must be just admin or super admin';
     }
 
     // Handle image upload or set default image
@@ -109,15 +114,15 @@ if (isset($_POST['submit'])) {
     // Check for errors and redirect if there are any
     if (!empty($errors)) {
         $_SESSION['errors'] = $errors;
-        $_SESSION['name'] = $name;
+        $_SESSION['aname'] = $name;
         $_SESSION['email'] = $email;
         header('location:../../add-admin.php');
         exit();
     }
 
     // If all operations are successful, redirect to the admin page
-    $query = "INSERT INTO admins(`name`, `email`, `status`, `password`, `img`, `created_at`) 
-              VALUES ('$name','$email',$status,'$password','$newName', NOW())";
+    $query = "INSERT INTO admins(`name`, `email`, `status`, `password`, `img`,`role`, `created_at`) 
+              VALUES ('$name','$email',$status,'$password','$newName','$role', NOW())";
     $result = mysqli_query($conn, $query);
     $_SESSION['success'] = 'Admin added successfully';
     header("location:../../admins.php");
