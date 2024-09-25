@@ -1,6 +1,11 @@
 <?php 
 
 require('inc/header.php');
+
+if (!$_SESSION['AdminId']) {
+    header('location:login.php');
+    exit();
+}
 ?>
 <div class="container py-5">
     <div class="row">

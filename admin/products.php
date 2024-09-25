@@ -1,6 +1,10 @@
 <?php 
 
 require('inc/header.php');
+if (!$_SESSION['AdminId']) {
+    header('location:login.php');
+    exit();
+}
 ?>
 <div class="container-fluid py-5">
     <div class="row">

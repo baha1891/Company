@@ -43,6 +43,7 @@ if (isset($_POST['login'])){
                 $_SESSION['AdminId']=$admin['id'];
                 $_SESSION['name'] = $admin['name'];
                 $_SESSION['role']= $admin['role'];
+                $_SESSION['status']= $admin['status'];
                 header('location:../../admins.php?page=1');
                 exit();
             } else {

@@ -57,7 +57,7 @@ if (mysqli_num_rows($query) > 0) {
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h3>All Admins</h3>
 
-                <?php if($_SESSION['role']==1):?>
+                <?php if($_SESSION['role']==1 && $_SESSION['status']==1 ):?>
                 <a href="add-admin.php" class="btn btn-success"><?=$message['Add Admin']?></a>
 
                 <?php endif;?>
@@ -124,7 +124,7 @@ if (mysqli_num_rows($query) > 0) {
                                     echo $admin['role'] ? '<span class="badge badge-success">super admin</span>' : '<span class="badge badge-success">admin</span>'
                                     ?>
                         </td>
-                        <?php if($_SESSION['role']==1):?>
+                        <?php if($_SESSION['role']==1 && $_SESSION['status']==1):?>
                         <td>
                             <a class="btn btn-sm btn-info" href="edit-admin.php?id=<?=$admin['id']?>">
                                 <i class="fas fa-edit"></i>
