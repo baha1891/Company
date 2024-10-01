@@ -51,10 +51,10 @@ if ($lang=='en') {
                     <a class="nav-link" href="admins.php?page=1"><?=$message['Admins']?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="prouducts.php"><?=$message['Prouducts']?></a>
+                    <a class="nav-link" href="projects.php"><?=$message['Projects']?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><?=$message['Orders']?></a>
+                    <a class="nav-link" href="categories.php"><?=$message['Categories']?></a>
                 </li>
 
             </ul>

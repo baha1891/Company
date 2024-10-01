@@ -55,7 +55,7 @@ if (mysqli_num_rows($query) > 0) {
         <div class="col-md-10 offset-md-1">
 
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h3>All Admins</h3>
+                <h3><?=$message['All Admins']?></h3>
 
                 <?php if($_SESSION['role']==1 && $_SESSION['status']==1 ):?>
                 <a href="add-admin.php" class="btn btn-success"><?=$message['Add Admin']?></a>
@@ -90,11 +90,12 @@ if (mysqli_num_rows($query) > 0) {
                 <thead>
                     <tr>
                         <th scope=" col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Img</th>
-                        <th scope="col">Actions</th>
-                        <th scope="col">Role</th>
+                        <th scope="col"><?=$message['Name']?></th>
+                        <th scope="col"><?=$message['Email']?></th>
+                        <th scope="col"><?=$message['Img']?></th>
+                        <th scope="col"><?=$message['Actions']?></th>
+                        <th scope="col"><?=$message['Role']?></th>
+                        <th scope="col"><?=$message['Update']?></th>
                     </tr>
                 </thead>
                 <tbody>
